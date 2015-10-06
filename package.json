@@ -1,7 +1,7 @@
 {
   "name": "js-array-methods",
   "version": "0.0.1",
-  "description": "Assessment for an introduction to JavaScript functions.",
+  "description": "Assessment for 'JavaScript Array methods.'",
   "scripts": {
     "test": "grunt test"
   },
@@ -17,7 +17,6 @@
     "grunt-jsbeautifier": "^0.2.10",
     "grunt-jscs": "^2.1.0",
     "grunt-jsonlint": "^1.0.4",
-    "grunt-node-inspector": "^0.3.0",
     "grunt-nodemon": "^0.4.0",
     "grunt-open": "^0.2.3",
     "grunt-plato": "^1.2.1",
