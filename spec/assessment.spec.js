@@ -31,11 +31,11 @@ describe('enumerable', function() {
   describe('any', function() {
 
     it('returns false for greater than 0 predicate', function() {
-      expect(assessment.any(array, n => n > 0)).toBe(false);
+      expect(assessment.any(array, function (n) {return n > 0;})).toBe(false);
     });
 
     it('returns true for less than 0 predicate', function() {
-      expect(assessment.any(array, n => n < 0)).toBe(true);
+      expect(assessment.any(array, function (n) {return n < 0;})).toBe(true);
     });
 
   });
@@ -45,7 +45,7 @@ describe('enumerable', function() {
     var answer = [-1, -3, -5];
 
     it('returns correct array for not even predicate', function() {
-      expect(assessment.select(array, n => n % 2)).toEqual(answer);
+      expect(assessment.select(array, function (n) {n % 2;})).toEqual(answer);
     });
 
   });
@@ -53,7 +53,7 @@ describe('enumerable', function() {
   describe('find', function() {
 
     it('returns right number for equal `-3` predicate', function() {
-      expect(assessment.find(array, n => n === -3)).toBe(-3);
+      expect(assessment.find(array, function (n) {n === -3;})).toBe(-3);
     });
 
   });
