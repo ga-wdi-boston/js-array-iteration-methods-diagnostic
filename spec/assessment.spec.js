@@ -52,8 +52,22 @@ describe('enumerable', function() {
 
   describe('find', function() {
 
-    it('returns right number for equal `-3` predicate', function() {
-      expect(assessment.find(array, n => n === -3)).toBe(-3);
+    var withDuplicates = [
+      { name: 'first' },
+      { name: 'repeat' },
+      { name: 'third' },
+      { name: 'repeat' },
+      { name: 'fifth' },
+    ];
+
+    it('returns correct object in array', function() {
+      expect(assessment.find(withDuplicates,
+        o => o.name === 'repeat')).toBe(withDuplicates[1]);
+    });
+
+    it('returns undefined for unmatched object', function() {
+      expect(assessment.find(withDuplicates,
+        o => o.name === 'fourth')).toBeUndefined();
     });
 
   });
