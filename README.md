@@ -1,6 +1,6 @@
 ![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
 
-# Assessment for JavaScript Array methods
+# Diagnostic for JavaScript Array methods
 
 You have 30 minutes
 
@@ -8,7 +8,7 @@ You have 30 minutes
 
 Fork, clone, branch (response), and npm install.
 
-Follow the prompts in `lib/assessment.js` and complete each question.  You may use any resource, other than someone else in the classroom, to help you complete this assessment.
+Follow the prompts in `lib/diagnostic.js` and complete each question.  You may use any resource, other than someone else in the classroom, to help you complete this diagnostic.
 
 Check your answers by running `grunt test`.  Check your code by running `grunt nag`. You can reformat your code with `grunt reformat`.
 
