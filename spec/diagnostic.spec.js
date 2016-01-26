@@ -52,13 +52,17 @@ describe('enumerable', function() {
 
   describe('find', function() {
 
-    var withDuplicates = [
-      { name: 'first' },
-      { name: 'repeat' },
-      { name: 'third' },
-      { name: 'repeat' },
-      { name: 'fifth' },
-    ];
+    var withDuplicates = [{
+      name: 'first'
+    }, {
+      name: 'repeat'
+    }, {
+      name: 'third'
+    }, {
+      name: 'repeat'
+    }, {
+      name: 'fifth'
+    }, ];
 
     it('returns correct object in array', function() {
       expect(assessment.find(withDuplicates,
