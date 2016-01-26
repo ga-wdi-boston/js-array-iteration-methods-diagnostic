@@ -50,7 +50,9 @@ describe('enumerable', function() {
 
   });
 
-  describe('find', function() {
+  describe('first', function() {
+    // this used to be 'find', but i changed it because i think this is
+    // one of the bugs antony is talking about
 
     var withDuplicates = [
       { name: 'first' },
@@ -61,12 +63,12 @@ describe('enumerable', function() {
     ];
 
     it('returns correct object in array', function() {
-      expect(assessment.find(withDuplicates,
+      expect(assessment.first(withDuplicates, // also used to be .find
         o => o.name === 'repeat')).toBe(withDuplicates[1]);
     });
 
     it('returns undefined for unmatched object', function() {
-      expect(assessment.find(withDuplicates,
+      expect(assessment.first(withDuplicates, // also used to be .find
         o => o.name === 'fourth')).toBeUndefined();
     });
 
