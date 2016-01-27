@@ -38,6 +38,10 @@ describe('enumerable', function() {
       expect(assessment.any(array, n => n < 0)).toBe(true);
     });
 
+    it('returns true for equal -3 predicate', function() {
+      expect(assessment.any(array, n => n === -3)).toBe(true);
+    });
+
   });
 
   describe('select', function() {
