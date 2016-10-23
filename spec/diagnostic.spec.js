@@ -1,5 +1,8 @@
 'use strict';
 
+// Allow chai syntax like `expect(foo).to.be.ok;`
+// jshint -W030
+
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
@@ -9,21 +12,21 @@ const expect = chai.expect;
 
 const assessment = require('../lib/diagnostic.js');
 
-describe('reduce', function() {
+describe('reduce', function () {
 
   let array = [-1, -2, -3, -4, -5];
 
-  describe('sum', function() {
+  describe('sum', function () {
 
-    it('returns the sum of the array', function() {
+    it('returns the sum of the array', function () {
       expect(array.reduce(assessment.sum)).to.equal(-15);
     });
 
   });
 
-  describe('min', function() {
+  describe('min', function () {
 
-    it('returns the minimum of the array elements', function() {
+    it('returns the minimum of the array elements', function () {
       expect(array.reduce(assessment.min)).to.equal(-5);
     });
 
@@ -31,37 +34,37 @@ describe('reduce', function() {
 
 });
 
-describe('enumerable', function() {
+describe('enumerable', function () {
 
   let array = [-1, -2, -3, -4, -5];
 
-  describe('any', function() {
+  describe('any', function () {
 
-    it('returns false for greater than 0 predicate', function() {
+    it('returns false for greater than 0 predicate', function () {
       expect(assessment.any(array, n => n > 0)).to.equal(false);
     });
 
-    it('returns true for less than 0 predicate', function() {
+    it('returns true for less than 0 predicate', function () {
       expect(assessment.any(array, n => n < 0)).to.equal(true);
     });
 
-    it('returns true for equal -3 predicate', function() {
+    it('returns true for equal -3 predicate', function () {
       expect(assessment.any(array, n => n === -3)).to.equal(true);
     });
 
   });
 
-  describe('select', function() {
+  describe('select', function () {
 
     let answer = [-1, -3, -5];
 
-    it('returns correct array for not even predicate', function() {
+    it('returns correct array for not even predicate', function () {
       expect(assessment.select(array, n => n % 2)).to.deep.equal(answer);
     });
 
   });
 
-  describe('first', function() {
+  describe('first', function () {
 
     let withDuplicates = [{
       name: 'first',
@@ -75,12 +78,12 @@ describe('enumerable', function() {
       name: 'fifth',
     }, ]; // jscs: ignore
 
-    it('returns correct object in array', function() {
+    it('returns correct object in array', function () {
       expect(assessment.first(withDuplicates,
         o => o.name === 'repeat')).to.equal(withDuplicates[1]);
     });
 
-    it('returns undefined for unmatched object', function() {
+    it('returns undefined for unmatched object', function () {
       expect(assessment.first(withDuplicates,
         o => o.name === 'fourth')).to.equal(undefined);
     });
