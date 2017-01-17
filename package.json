@@ -2,9 +2,6 @@
   "name": "ga-wdi-boston.js-array-methods-diagnostic",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node bin/index.js"
-  },
   "license": {
     "software": "GNU GPLv3",
     "content": "CC­BY­NC­SA 4.0"
