@@ -1,93 +1,79 @@
-'use strict';
+'use strict'
 
 // Allow chai syntax like `expect(foo).to.be.ok;`
 // jshint -W030
 
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
+const chai = require('chai')
+const chaiAsPromised = require('chai-as-promised')
 
-chai.use(chaiAsPromised);
+chai.use(chaiAsPromised)
 
-const expect = chai.expect;
+const expect = chai.expect
 
-const assessment = require('../lib/diagnostic');
+const assessment = require('../lib/diagnostic')
 
 describe('reduce callbacks', function () {
-
-  let array = [-1, -2, -3, -4, -5];
+  const array = [-1, -2, -3, -4, -5]
 
   describe('sum', function () {
-
     it('returns the sum of the array', function () {
-      expect(array.reduce(assessment.sum)).to.equal(-15);
-    });
-
-  });
+      expect(array.reduce(assessment.sum)).to.equal(-15)
+    })
+  })
 
   describe('min', function () {
-
     it('returns the minimum of the array elements', function () {
-      expect(array.reduce(assessment.min)).to.equal(-5);
-    });
-
-  });
-
-});
+      expect(array.reduce(assessment.min)).to.equal(-5)
+    })
+  })
+})
 
 describe('enumerable', function () {
-
-  let array = [-1, -2, -3, -4, -5];
+  const array = [-1, -2, -3, -4, -5]
 
   describe('any', function () {
-
     it('returns false for greater than 0 predicate', function () {
-      expect(assessment.any(array, n => n > 0)).to.be.false;
-    });
+      expect(assessment.any(array, n => n > 0)).to.be.false
+    })
 
     it('returns true for less than 0 predicate', function () {
-      expect(assessment.any(array, n => n < 0)).to.be.true;
-    });
+      expect(assessment.any(array, n => n < 0)).to.be.true
+    })
 
     it('returns true for equal -3 predicate', function () {
-      expect(assessment.any(array, n => n === -3)).to.be.true;
-    });
-
-  });
+      expect(assessment.any(array, n => n === -3)).to.be.true
+    })
+  })
 
   describe('select', function () {
-
-    let answer = [-1, -3, -5];
+    const answer = [-1, -3, -5]
 
     it('returns correct array for not even predicate', function () {
-      expect(assessment.select(array, n => n % 2)).to.deep.equal(answer);
-    });
-
-  });
+      expect(assessment.select(array, n => n % 2)).to.deep.equal(answer)
+    })
+  })
 
   describe('first', function () {
-
-    let withDuplicates = [{
-      name: 'first',
+    const withDuplicates = [{
+      name: 'first'
     }, {
-      name: 'repeat',
+      name: 'repeat'
     }, {
-      name: 'third',
+      name: 'third'
     }, {
-      name: 'repeat',
+      name: 'repeat'
     }, {
-      name: 'fifth',
-    }, ]; // jscs: ignore
+      name: 'fifth'
+    } ] // jscs: ignore
 
     it('returns correct object in array', function () {
       expect(assessment.first(withDuplicates,
-        o => o.name === 'repeat')).to.equal(withDuplicates[1]);
-    });
+        o => o.name === 'repeat')).to.equal(withDuplicates[1])
+    })
 
     it('returns undefined for unmatched object', function () {
       expect(assessment.first(withDuplicates,
-        o => o.name === 'fourth')).to.equal(undefined);
-    });
-
-  });
-
-});
+        o => o.name === 'fourth')).to.equal(undefined)
+    })
+  })
+})
