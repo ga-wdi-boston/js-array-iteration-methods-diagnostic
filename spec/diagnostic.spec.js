@@ -15,15 +15,15 @@ const assessment = require('../lib/diagnostic')
 describe('reduce callbacks', function () {
   const array = [-1, -2, -3, -4, -5]
 
-  describe('sum', function () {
-    it('returns the sum of the array', function () {
-      expect(array.reduce(assessment.sum)).to.equal(-15)
-    })
-  })
-
   describe('min', function () {
     it('returns the minimum of the array elements', function () {
       expect(array.reduce(assessment.min)).to.equal(-5)
+    })
+  })
+
+  describe('sum', function () {
+    it('returns the sum of the array', function () {
+      expect(array.reduce(assessment.sum)).to.equal(-15)
     })
   })
 })
