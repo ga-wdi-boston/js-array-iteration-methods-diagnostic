@@ -9,9 +9,9 @@
 ## Instructions
 
 1.  Fork and clone this repository.
-1.  Create a new branch, named `response`.
-1.  Checkout the `response` branch.
-1.  Install dependencies by running `npm install`
+1.  Change into the new directory.
+1.  Install dependencies by running `npm install`.
+1.  Create and checkout a new branch, named `response`.
 1.  Follow the directions given in [lib/diagnostic.js](lib/diagnostic.js).
 1.  Before the allotted time is up, push to your fork and issue a pull request.
 
