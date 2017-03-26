@@ -1,7 +1,6 @@
 'use strict'
 
 // Allow chai syntax like `expect(foo).to.be.ok;`
-// jshint -W030
 
 const chai = require('chai')
 const chaiAsPromised = require('chai-as-promised')
@@ -10,20 +9,20 @@ chai.use(chaiAsPromised)
 
 const expect = chai.expect
 
-const assessment = require('../lib/diagnostic')
+const diagnostic = require('../lib/diagnostic')
 
 describe('reduce callbacks', function () {
   const array = [-1, -2, -3, -4, -5]
 
   describe('min', function () {
     it('returns the minimum of the array elements', function () {
-      expect(array.reduce(assessment.min)).to.equal(-5)
+      expect(array.reduce(diagnostic.min)).to.equal(-5)
     })
   })
 
   describe('sum', function () {
     it('returns the sum of the array', function () {
-      expect(array.reduce(assessment.sum)).to.equal(-15)
+      expect(array.reduce(diagnostic.sum)).to.equal(-15)
     })
   })
 })
@@ -31,29 +30,21 @@ describe('reduce callbacks', function () {
 describe('enumerable', function () {
   const array = [-1, -2, -3, -4, -5]
 
-  describe('any', function () {
-    it('returns false for greater than 0 predicate', function () {
-      expect(assessment.any(array, n => n > 0)).to.be.false
+  describe('hasNone', function () {
+    it('returns true for greater than 0 predicate', function () {
+      expect(diagnostic.hasNone(array, n => n > 0)).to.be.true
     })
 
-    it('returns true for less than 0 predicate', function () {
-      expect(assessment.any(array, n => n < 0)).to.be.true
+    it('returns false for less than 0 predicate', function () {
+      expect(diagnostic.hasNone(array, n => n < 0)).to.be.false
     })
 
-    it('returns true for equal -3 predicate', function () {
-      expect(assessment.any(array, n => n === -3)).to.be.true
-    })
-  })
-
-  describe('select', function () {
-    const answer = [-1, -3, -5]
-
-    it('returns correct array for not even predicate', function () {
-      expect(assessment.select(array, n => n % 2)).to.deep.equal(answer)
+    it('returns false for equal -3 predicate', function () {
+      expect(diagnostic.hasNone(array, n => n === -3)).to.be.false
     })
   })
 
-  describe('first', function () {
+  describe('last', function () {
     const withDuplicates = [{
       name: 'first'
     }, {
@@ -64,16 +55,26 @@ describe('enumerable', function () {
       name: 'repeat'
     }, {
       name: 'fifth'
-    } ] // jscs: ignore
+    } ]
 
     it('returns correct object in array', function () {
-      expect(assessment.first(withDuplicates,
-        o => o.name === 'repeat')).to.equal(withDuplicates[1])
+      expect(diagnostic.last(withDuplicates,
+        o => o.name === 'repeat')).to.equal(withDuplicates[3])
     })
 
     it('returns undefined for unmatched object', function () {
-      expect(assessment.first(withDuplicates,
+      expect(diagnostic.last(withDuplicates,
         o => o.name === 'fourth')).to.equal(undefined)
+    })
+  })
+
+  describe('hasOne', function () {
+    it('returns false for less than 0 predicate', function () {
+      expect(diagnostic.hasOne(array, n => n < 0)).to.be.false
+    })
+
+    it('returns true for equal -3 predicate', function () {
+      expect(diagnostic.hasOne(array, n => n === -3)).to.be.true
     })
   })
 })
